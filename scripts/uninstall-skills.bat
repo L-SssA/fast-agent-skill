@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 chcp 65001 >nul
 echo ====================================
 echo   Agent Skills 卸载程序
@@ -15,25 +16,25 @@ if not exist ".agents\skills" (
 echo [信息] 开始卸载技能...
 echo.
 
-REM 卸载 create-skill
-if exist ".agents\skills\create-skill" (
-    rmdir /s /q ".agents\skills\create-skill"
-    echo [成功] 已卸载: create-skill
-) else (
-    echo [信息] create-skill 不存在
-)
-
-REM 卸载 optimize-skill
-if exist ".agents\skills\optimize-skill" (
-    rmdir /s /q ".agents\skills\optimize-skill"
-    echo [成功] 已卸载: optimize-skill
-) else (
-    echo [信息] optimize-skill 不存在
+REM 动态遍历并卸载所有技能
+set UNINSTALL_COUNT=0
+for /d %%D in (.agents\skills\*) do (
+    set SKILL_NAME=%%~nxD
+    echo [信息] 卸载技能: !SKILL_NAME!
+    rmdir /s /q ".agents\skills\!SKILL_NAME!"
+    if !errorlevel! equ 0 (
+        echo [成功] 已卸载: !SKILL_NAME!
+        set /a UNINSTALL_COUNT+=1
+    ) else (
+        echo [失败] 无法卸载: !SKILL_NAME!
+    )
 )
 
 echo.
 echo ====================================
 echo   卸载完成！
 echo ====================================
+echo.
+echo 共卸载 %UNINSTALL_COUNT% 个技能
 echo.
 pause

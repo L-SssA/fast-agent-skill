@@ -1,4 +1,4 @@
-# 安装技能脚本 - 使用符号链接将 skills 目录中的技能链接到 .local/agentskills 目录
+# 安装技能脚本 - 使用符号链接将 skills 目录中的技能链接到 .agents/skills 目录
 
 Write-Host "开始安装技能..." -ForegroundColor Green
 

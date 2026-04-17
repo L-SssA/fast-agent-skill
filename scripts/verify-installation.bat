@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 chcp 65001 >nul
 echo ====================================
 echo   Agent Skills 安装验证
@@ -16,37 +17,36 @@ if not exist ".agents\skills" (
 echo [信息] 检查已安装的技能...
 echo.
 
-set SKILL_COUNT=0
+set INSTALLED_COUNT=0
+set TOTAL_COUNT=0
 
-REM 检查 create-skill
-if exist ".agents\skills\create-skill" (
-    echo [✓] create-skill - 已安装
-    set /a SKILL_COUNT+=1
-) else (
-    echo [✗] create-skill - 未安装
+REM 统计源目录中的技能总数
+for /d %%D in (skills\*) do (
+    set /a TOTAL_COUNT+=1
 )
 
-REM 检查 optimize-skill
-if exist ".agents\skills\optimize-skill" (
-    echo [✓] optimize-skill - 已安装
-    set /a SKILL_COUNT+=1
-) else (
-    echo [✗] optimize-skill - 未安装
+REM 动态检查每个已安装的技能
+for /d %%D in (.agents\skills\*) do (
+    set SKILL_NAME=%%~nxD
+    echo [✓] !SKILL_NAME! - 已安装
+    set /a INSTALLED_COUNT+=1
 )
 
 echo.
 echo ====================================
 echo   验证结果
 echo ====================================
-echo 已安装技能数: %SKILL_COUNT%/2
+echo 已安装技能数: %INSTALLED_COUNT%/%TOTAL_COUNT%
 echo.
 
-if %SKILL_COUNT% equ 2 (
+if %INSTALLED_COUNT% equ %TOTAL_COUNT% (
     echo [成功] 所有技能已正确安装！
     echo.
     echo 你可以在代理会话中使用 /skills 命令来查看可用技能。
-) else (
+) else if %INSTALLED_COUNT% gtr 0 (
     echo [警告] 部分技能未安装，请运行 install-skills.bat 重新安装。
+) else (
+    echo [错误] 没有安装任何技能，请运行 install-skills.bat 进行安装。
 )
 
 echo.
