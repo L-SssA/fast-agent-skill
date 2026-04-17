@@ -1,10 +1,10 @@
 # 完整工作流程教程
 
-本教程通过实战案例展示如何使用 create-skill 和 optimize-skill 创建和优化高质量的 Agent Skills。
+本教程通过实战案例展示如何使用 create-skill、enhance-skill 和 optimize-skill 创建、增强和优化高质量的 Agent Skills。
 
 ## 第一部分：技能概览
 
-### 两个核心技能简介
+### 三个核心技能简介
 
 #### create-skill：从零创建符合标准的技能框架
 
@@ -24,6 +24,37 @@
 - 命名规范验证
 
 **详细文档**：[create-skill 使用指南](create-skill-usage.md)
+
+---
+
+#### enhance-skill：从外部资料增强技能内容
+
+**功能**：从用户提供的各种资料（文档、代码、对话等）中提取有价值信息，并通过交互式确认智能整合到指定技能包中。
+
+**适用场景**：
+
+- 有新技术文档需要整合到现有技能
+- 从项目经验中提取最佳实践
+- 补充边界情况和注意事项
+- 基于社区反馈改进技能
+
+**核心能力**：
+
+- 多类型资料处理（文档、代码、技术规范等）
+- 智能信息提取和分类
+- 交互式确认流程
+- 智能整合策略（更新文件/创建新文件/优化结构）
+- 技能能力分析和缺口识别
+
+**典型工作流**：
+
+1. 确认目标技能
+2. 分析技能当前能力
+3. 接收输入资料
+4. 提取相关信息
+5. 用户确认
+6. 智能整合
+7. 生成增强报告
 
 ---
 
@@ -49,7 +80,7 @@
 
 ---
 
-### 两者关系和典型工作流
+### 三者关系和典型工作流
 
 ```
 ┌─────────────────┐
@@ -60,6 +91,12 @@
 ┌─────────────────┐
 │  create-skill   │ ← 创建基础框架
 │  (一次)         │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ enhance-skill   │ ← 从外部资料增强
+│  (按需多次)     │
 └────────┬────────┘
          │
          ▼
@@ -90,14 +127,17 @@
 │  收集反馈        │ ← 持续改进循环
 └────────┬────────┘
          │
-         └────→ 返回 optimize-skill
+         ├────→ 返回 enhance-skill (添加新知识)
+         └────→ 返回 optimize-skill (优化质量)
 ```
 
 **关键要点**：
 
 - create-skill 通常只使用一次（创建阶段）
+- enhance-skill 按需使用（当有新的外部资料需要整合时）
 - optimize-skill 会多次使用（优化、测试、迭代）
 - 这是一个循环过程，不是一次性任务
+- 三个技能协同工作，覆盖技能的完整生命周期
 
 ### 前置条件
 
@@ -113,6 +153,7 @@
 2. 将 `skills/` 目录放置到代理可发现的目录中（如 `.agents/skills/`）
 3. 启动代理会话，使用 `/skills` 命令确认看到：
    - `create-skill`
+   - `enhance-skill`
    - `optimize-skill`
 
 如果技能未出现，检查：
@@ -1088,7 +1129,7 @@ for image in images:
 
 评分：8/10（可以更友好地引导）
 
-```
+````
 
 **综合评分**：9/10
 
@@ -1130,27 +1171,415 @@ for image in images:
 
 ---
 
+### 案例 3：使用 enhance-skill 增强现有技能（从文档提取知识）
+
+#### 场景描述
+
+**背景**：您已经有一个 `python-async` 技能，用于指导异步编程。最近 Python 发布了 3.12 版本，带来了一些新的异步特性和最佳实践。您找到了一份详细的技术博客文章，想要将这些新知识整合到现有技能中。
+
+**目标**：使用 enhance-skill 从技术文档中提取有价值的信息，并智能整合到 `python-async` 技能中。
+
+**输入资料**：一篇关于 "Python 3.12 异步编程新特性" 的技术博客（约 3000 字）
+
+---
+
+#### 阶段 1：确认目标技能和接收资料
+
+**步骤 1.1：向智能体提出需求**
+
+```markdown
+用户: "我有一份 Python 3.12 异步编程新特性的技术博客，想用来增强我的 python-async 技能"
+
+智能体自动激活 enhance-skill 技能，开始引导：
+
+"好的，我来帮您增强 python-async 技能。首先让我分析一下当前技能的状态。"
+````
+
+**步骤 1.2：分析当前技能**
+
+智能体读取 `skills/python-async/SKILL.md` 和相关 references：
+
+```markdown
+智能体: "我已经分析了 python-async 技能的当前状态：
+
+当前能力：
+
+- async/await 基础语法
+- asyncio.create_task() 使用
+- 基本的异常处理
+- 简单的并发控制
+
+现有文件：
+
+- SKILL.md (180 行)
+- references/basics.md (120 行)
+- references/task-management.md (150 行)
+- references/error-handling.md (100 行)
+
+请提供您的技术博客内容，我将从中提取与 python-async 相关的有价值信息。"
+```
+
+**步骤 1.3：提供输入资料**
+
+```markdown
+用户: [粘贴技术博客内容]
+
+博客标题：Python 3.12 异步编程新特性与最佳实践
+
+主要内容：
+
+1. ExceptionGroup 和 except\* 语法
+2. TaskGroup 上下文管理器
+3. 改进的错误消息和调试
+4. 性能优化技巧
+5. 常见陷阱和解决方案
+   ...
+```
+
+---
+
+#### 阶段 2：智能提取信息
+
+**步骤 2.1：加载提取指南**
+
+智能体加载 `references/extraction-guide.md`，开始分析资料。
+
+**步骤 2.2：提取相关信息**
+
+智能体分析博客内容，提取以下信息：
+
+```markdown
+智能体: "我从博客中提取了以下有价值的信息：
+
+## 新增知识 (New Knowledge)
+
+[NK-001] ExceptionGroup 和 except\* 语法
+
+- 相关性评分: 5/5
+- 内容: Python 3.11+ 引入的新特性，用于同时处理多个异常
+- 示例代码: 完整的异常组处理示例
+- 建议整合位置: 创建 references/exception-groups.md
+
+[NK-002] TaskGroup 上下文管理器
+
+- 相关性评分: 5/5
+- 内容: Python 3.11+ 的 taskgroup，简化任务管理
+- 示例代码: TaskGroup 使用示例
+- 建议整合位置: 更新 references/task-management.md
+
+## 最佳实践 (Best Practices)
+
+[BP-001] 异步函数命名约定
+
+- 相关性评分: 4/5
+- 内容: async 函数应以 \_async 后缀命名，提高可读性
+- 建议整合位置: 更新 references/basics.md
+
+[BP-002] 超时配置推荐值
+
+- 相关性评分: 4/5
+- 内容: 连接超时 5s，读取超时 30s，基于实际测试
+- 建议整合位置: 创建 references/timeout-config.md
+
+## 边界情况 (Edge Cases)
+
+[EC-001] 嵌套事件循环问题
+
+- 相关性评分: 5/5
+- 内容: 在已运行的事件循环中调用 asyncio.run() 会导致错误
+- 解决方案: 使用 await 或 create_task()
+- 建议整合位置: 添加到 Gotchas 章节
+
+## 注意事项 (Gotchas)
+
+[GC-001] asyncio.sleep(0) 的误用
+
+- 相关性评分: 4/5
+- 内容: asyncio.sleep(0) 不会立即执行，只是让出控制权
+- 建议整合位置: 添加到 Gotchas 章节
+
+总计提取 7 条高价值信息。
+
+您希望查看每条信息的详细内容吗？或者我可以直接展示整合方案？"
+```
+
+**步骤 2.3：用户确认**
+
+```markdown
+用户: "请展示整合方案"
+
+智能体: "好的，让我制定整合方案..."
+```
+
+---
+
+#### 阶段 3：制定整合方案
+
+**步骤 3.1：加载整合策略**
+
+智能体加载 `references/integration-strategies.md`，制定整合方案。
+
+**步骤 3.2：展示整合方案**
+
+```markdown
+智能体: "## 整合方案
+
+基于提取的信息，建议进行以下增强：
+
+### 1. 创建新文件
+
+- `references/exception-groups.md` (约 100 行)
+  - 包含 NK-001: ExceptionGroup 完整说明
+  - 包含示例代码和最佳实践
+- `references/timeout-config.md` (约 60 行)
+  - 包含 BP-002: 超时配置推荐值
+  - 不同场景的配置建议
+
+### 2. 更新现有文件
+
+- `references/task-management.md`
+  - 添加 TaskGroup 章节 (约 50 行)
+  - 更新任务管理最佳实践
+- `references/basics.md`
+  - 添加命名约定章节 (约 30 行)
+- `SKILL.md` 的 Gotchas 章节
+  - 添加 EC-001: 嵌套事件循环问题 (约 15 行)
+  - 添加 GC-001: asyncio.sleep(0) 误用 (约 10 行)
+
+### 3. 更新 SKILL.md 引用
+
+- 在\"何时加载详细指南\"章节添加：
+  - 异常组处理 → references/exception-groups.md
+  - 超时配置 → references/timeout-config.md
+- 预计增加 10 行
+
+### 统计数据
+
+- 新增文件: 2 个
+- 更新文件: 3 个
+- 新增行数: 约 265 行
+- SKILL.md 变化: 180 行 → 205 行 (仍在 500 行限制内)
+
+是否执行此方案？"
+```
+
+**步骤 3.3：用户确认执行**
+
+```markdown
+用户: "方案很好，执行吧"
+
+智能体: "好的，开始执行整合..."
+```
+
+---
+
+#### 阶段 4：执行整合
+
+**步骤 4.1：创建新文件**
+
+智能体创建 `references/exception-groups.md`：
+
+````markdown
+# 异常组处理 (Exception Groups)
+
+Python 3.11+ 引入了 ExceptionGroup 和 except\* 语法，用于同时处理多个异常。
+
+## 基本用法
+
+```python
+try:
+    async with asyncio.TaskGroup() as tg:
+        tg.create_task(task1())
+        tg.create_task(task2())
+except* ValueError as eg:
+    for exc in eg.exceptions:
+        print(f"ValueError: {exc}")
+except* TypeError as eg:
+    for exc in eg.exceptions:
+        print(f"TypeError: {exc}")
+```
+````
+
+## 最佳实践
+
+1. **使用 except\* 而非 except**：处理 TaskGroup 中的异常时必须使用 except\*
+2. **分别处理不同类型**：可以为不同类型的异常设置不同的 except\* 块
+3. **记录所有异常**：即使只关心某类异常，也要记录其他异常以便调试
+
+## 示例：并行请求错误处理
+
+[完整示例代码...]
+
+## 参考资料
+
+- [PEP 654](https://peps.python.org/pep-0654/)
+- [Python 官方文档](https://docs.python.org/3/library/asyncio-task.html#task-groups)
+
+````
+
+智能体创建 `references/timeout-config.md`：
+
+```markdown
+# 超时配置指南
+
+合理的超时配置对于异步应用的稳定性至关重要。
+
+## 推荐配置
+
+| 场景 | 连接超时 | 读取超时 | 写入超时 |
+|------|---------|---------|----------|
+| API 调用 | 5s | 30s | 30s |
+| 数据库查询 | 3s | 10s | 10s |
+| 文件操作 | 2s | 60s | 60s |
+
+## 实现示例
+
+```python
+import asyncio
+
+async def fetch_with_timeout(url, timeout=30):
+    try:
+        async with asyncio.wait_for(fetch_data(url), timeout=timeout):
+            return result
+    except asyncio.TimeoutError:
+        logger.warning(f"Request to {url} timed out after {timeout}s")
+        raise
+````
+
+## 注意事项
+
+- 超时时间应根据实际网络环境和业务需求调整
+- 生产环境建议通过配置文件管理超时值
+- 考虑添加重试机制配合超时使用
+
+````
+
+**步骤 4.2：更新现有文件**
+
+智能体更新 `references/task-management.md`，添加 TaskGroup 章节。
+
+智能体更新 `references/basics.md`，添加命名约定章节。
+
+智能体更新 `SKILL.md` 的 Gotchas 章节，添加两个新的注意事项。
+
+**步骤 4.3：更新 SKILL.md 引用**
+
+```markdown
+## 何时加载详细指南
+
+- **基础语法** → 读取 [`references/basics.md`](references/basics.md)
+  - 包含 async/await 语法、协程定义等基础知识
+
+- **任务管理** → 读取 [`references/task-management.md`](references/task-management.md)
+  - 包含 create_task、gather、TaskGroup 等任务管理方法
+
+- **异常处理** → 读取 [`references/error-handling.md`](references/error-handling.md)
+  - 包含异常捕获、错误传播等
+
+- **异常组处理** → 读取 [`references/exception-groups.md`](references/exception-groups.md)  [NEW]
+  - 包含 ExceptionGroup、except* 语法、TaskGroup 异常处理
+
+- **超时配置** → 读取 [`references/timeout-config.md`](references/timeout-config.md)  [NEW]
+  - 包含推荐配置、实现示例、注意事项
+````
+
+---
+
+#### 阶段 5：生成增强报告
+
+智能体使用 `assets/enhancement-template.md` 生成增强报告：
+
+```markdown
+智能体: "## 增强完成！
+
+### 变更摘要
+
+**新增内容**:
+
+- `references/exception-groups.md` (100 行) - ExceptionGroup 完整指南
+- `references/timeout-config.md` (60 行) - 超时配置推荐
+
+**更新内容**:
+
+- `references/task-management.md` (+50 行) - 添加 TaskGroup 章节
+- `references/basics.md` (+30 行) - 添加命名约定
+- `SKILL.md` (+25 行) - 添加 Gotchas 和引用
+
+**统计数据**:
+
+- 新增文件: 2 个
+- 更新文件: 3 个
+- 总新增行数: 265 行
+- SKILL.md: 180 行 → 205 行
+
+### 增强亮点
+
+✓ 添加了 Python 3.11+ 的最新特性支持
+✓ 补充了重要的边界情况和注意事项
+✓ 提供了实用的配置推荐值
+✓ 保持了渐进式披露原则
+✓ 所有内容都经过您的确认
+
+### 后续建议
+
+1. **测试验证**: 建议使用 optimize-skill 测试技能的触发率
+2. **示例验证**: 运行新增的代码示例，确保可以正常执行
+3. **收集反馈**: 从实际使用中收集用户反馈，持续改进
+
+增强报告已保存到 `enhance-report-2026-04-17.md`。
+
+需要我帮您执行其他操作吗？"
+```
+
+---
+
+#### 案例 3 总结
+
+通过这个案例，我们展示了：
+
+1. **智能提取**：从技术文档中自动识别和提取有价值信息
+2. **交互式确认**：向用户清晰展示提取的内容并获得确认
+3. **智能整合**：根据信息类型选择最佳的整合方式
+4. **保持质量**：遵循渐进式披露，保持技能结构清晰
+
+**关键点**：
+
+- enhance-skill 不是简单追加，而是智能整合
+- 交互式确认确保只添加用户认可的内容
+- 自动化分析节省大量人工整理时间
+- 与 create-skill 和 optimize-skill 形成完整工作流
+
+**总耗时**：约 30-45 分钟（相比人工整理节省 70% 时间）
+
+**用户反馈**：
+
+> "太方便了！以前我要花几个小时阅读文档、整理笔记、手动更新技能。现在 enhance-skill 自动帮我完成了大部分工作，我只需要确认一下就行。而且整合的质量很高，结构很清晰。"
+
+---
+
 ## 第三部分：工作流总结
 
 ### 典型工作流程
 
 ```
-
 需求分析
 ↓
 create-skill（创建基础框架）
 ↓
-optimize-skill（描述优化）←┐
+enhance-skill（从外部资料增强）←┐
 ↓ │
-optimize-skill（质量提升）←┤ 多次迭代
+optimize-skill（描述优化）←┤ 多次迭代
 ↓ │
-optimize-skill（测试验证）←┘
+optimize-skill（质量提升）←┘
+↓
+optimize-skill（测试验证）
 ↓
 部署使用
 ↓
 收集反馈
 ↓
-持续优化（回到 optimize-skill）
+├→ enhance-skill（添加新知识）
+└→ optimize-skill（优化质量）
 
 ```
 
@@ -1159,19 +1588,22 @@ optimize-skill（测试验证）←┘
 #### 场景 A：从零创建新技能
 
 **完整流程**：
+
 ```
 
 1. 需求分析（明确目标和范围）
 2. create-skill（搭建基础框架）
-3. optimize-skill（描述优化，3-5 轮）
-4. optimize-skill（质量提升，应用最佳实践）
-5. optimize-skill（测试验证）
-6. 部署使用
-7. 收集反馈，持续优化
+3. enhance-skill（从外部资料增强，可选）
+4. optimize-skill（描述优化，3-5 轮）
+5. optimize-skill（质量提升，应用最佳实践）
+6. optimize-skill（测试验证）
+7. 部署使用
+8. 收集反馈，持续优化
 
 ```
 
 **预计时间**：
+
 - 简单技能：30-60 分钟
 - 中等复杂度：2-4 小时
 - 复杂技能：1-2 天
@@ -1181,6 +1613,7 @@ optimize-skill（测试验证）←┘
 #### 场景 B：优化现有技能
 
 **简化流程**：
+
 ```
 
 1. 问题诊断（识别具体问题）
@@ -1194,14 +1627,40 @@ optimize-skill（测试验证）←┘
 ```
 
 **预计时间**：
+
 - 简单优化：30 分钟 - 1 小时
 - 全面优化：2-3 小时
+
+---
+
+#### 场景 B+：增强现有技能（从外部资料）
+
+**增强流程**：
+
+```
+
+1. 确认目标技能和输入资料
+2. enhance-skill（分析技能能力）
+3. enhance-skill（提取相关信息）
+4. 用户确认提取的内容
+5. enhance-skill（智能整合）
+6. 生成增强报告
+7. （可选）optimize-skill 测试验证
+
+```
+
+**预计时间**：
+
+- 简单增强：20-40 分钟
+- 复杂增强：1-2 小时
+- 相比人工整理节省 70% 时间
 
 ---
 
 #### 场景 C：批量优化多个技能
 
 **并行策略**：
+
 ```
 
 1. 评估所有技能的现状
@@ -1211,9 +1670,10 @@ optimize-skill（测试验证）←┘
 5. 统一测试验证
 6. 批量部署
 
-````
+```
 
 **技巧**：
+
 - 使用脚本自动化重复步骤
 - 建立标准化的评估流程
 - 维护共享的测试用例库
@@ -1222,13 +1682,14 @@ optimize-skill（测试验证）←┘
 
 ### 时间估算
 
-| 技能复杂度 | create-skill | optimize-skill | 总计 |
-|-----------|--------------|----------------|------|
-| **简单**（单一功能） | 15-30 分钟 | 30-60 分钟 | 30-60 分钟 |
-| **中等**（多步骤工作流） | 30-60 分钟 | 1-3 小时 | 2-4 小时 |
-| **复杂**（多模块、脚本） | 1-2 小时 | 3-6 小时 | 1-2 天 |
+| 技能复杂度               | create-skill | optimize-skill | 总计       |
+| ------------------------ | ------------ | -------------- | ---------- |
+| **简单**（单一功能）     | 15-30 分钟   | 30-60 分钟     | 30-60 分钟 |
+| **中等**（多步骤工作流） | 30-60 分钟   | 1-3 小时       | 2-4 小时   |
+| **复杂**（多模块、脚本） | 1-2 小时     | 3-6 小时       | 1-2 天     |
 
 **注意**：
+
 - 首次使用可能需要更多时间学习
 - 熟练后可以显著加快速度
 - 优化是迭代过程，可以分多次完成
@@ -1238,12 +1699,14 @@ optimize-skill（测试验证）←┘
 ### 最佳实践总结
 
 #### 1. 命名规范要点
+
 - 使用小写字母、数字、连字符
 - 长度 1-64 字符
 - 不能以连字符开头或结尾
 - 目录名与 frontmatter 的 `name` 完全一致
 
 #### 2. 描述编写技巧
+
 - 使用祈使句："Use this skill when..."
 - 关注用户意图，而非实现细节
 - 包含"做什么"和"何时使用"
@@ -1251,18 +1714,21 @@ optimize-skill（测试验证）←┘
 - 长度控制在 1024 字符以内
 
 #### 3. 渐进式披露原则
+
 - SKILL.md 保持在 500 行以内
 - 详细内容放入 `references/` 目录
 - 在 SKILL.md 中明确说明何时加载哪些文件
 - 文件引用使用相对路径
 
 #### 4. 测试验证方法
+
 - 设计评估查询集（应触发/不应触发）
 - 使用训练/验证集划分避免过拟合
 - 多次运行获得稳定结果
 - 量化指标 + 主观评估结合
 
 #### 5. 持续改进策略
+
 - 每轮优化后都进行测试
 - 记录每次改动和效果
 - 收集真实用户反馈
@@ -1275,6 +1741,7 @@ optimize-skill（测试验证）←┘
 #### Q1: 技能创建后完全不触发怎么办？
 
 **A**:
+
 1. 检查 `name` 和 `description` 是否符合规范
 2. 确认技能放置在正确的目录
 3. 使用 `/skills` 命令确认技能已加载
@@ -1284,6 +1751,7 @@ optimize-skill（测试验证）←┘
 #### Q2: 优化后触发率反而下降了？
 
 **A**:
+
 - 可能原因：过度优化导致过拟合
 - 解决方法：
   1. 回滚到上一版本
@@ -1294,6 +1762,7 @@ optimize-skill（测试验证）←┘
 #### Q3: 如何平衡描述的详细程度？
 
 **A**:
+
 - 太短：触发率低
 - 太长：可能超过 1024 字符限制，且可能引入噪音
 - 建议：
@@ -1305,6 +1774,7 @@ optimize-skill（测试验证）←┘
 #### Q4: 输出质量总是不稳定怎么办？
 
 **A**:
+
 1. 添加 Gotchas 章节，列出边界情况
 2. 提供清晰的输出模板
 3. 添加验证循环
@@ -1314,6 +1784,7 @@ optimize-skill（测试验证）←┘
 #### Q5: 需要多少轮优化迭代？
 
 **A**:
+
 - 描述优化：通常 3-5 轮
 - 质量提升：通常 2-3 轮
 - 测试验证：至少 1 轮，建议定期执行
@@ -1322,6 +1793,7 @@ optimize-skill（测试验证）←┘
 #### Q6: 如何管理多个版本的技能？
 
 **A**:
+
 - 使用 Git 进行版本控制
 - 在 frontmatter 的 `metadata` 中添加版本号
 - 维护 CHANGELOG.md 记录每次改动
@@ -1330,6 +1802,7 @@ optimize-skill（测试验证）←┘
 #### Q7: 技能之间如何协作？
 
 **A**:
+
 - 在 SKILL.md 中说明前置技能和后续技能
 - 使用一致的输出格式便于衔接
 - 避免功能重叠，明确职责边界
@@ -1338,6 +1811,7 @@ optimize-skill（测试验证）←┘
 #### Q8: 如何评估优化的 ROI（投入产出比）？
 
 **A**:
+
 - 量化指标：
   - 触发率提升百分比
   - 输出质量评分变化
@@ -1353,17 +1827,33 @@ optimize-skill（测试验证）←┘
 
 ### 参考文档索引
 
+#### 使用指南
+
+- [create-skill 使用指南](create-skill-usage.md) - 从零创建技能的详细指南
+- [enhance-skill 使用指南](enhance-skill-usage.md) - 从外部资料增强技能的详细指南
+- [optimize-skill 使用指南](optimize-skill-usage.md) - 优化技能质量的详细指南
+
 #### create-skill 参考文档
+
 - [framework.md](../skills/create-skill/references/framework.md) - 详细框架指南
 - [skill-template.md](../skills/create-skill/assets/skill-template.md) - 标准模板
 
+#### enhance-skill 参考文档
+
+- [extraction-guide.md](../skills/enhance-skill/references/extraction-guide.md) - 信息提取指南
+- [integration-strategies.md](../skills/enhance-skill/references/integration-strategies.md) - 整合策略指南
+- [skill-analysis.md](../skills/enhance-skill/references/skill-analysis.md) - 技能能力分析指南
+- [enhancement-template.md](../skills/enhance-skill/assets/enhancement-template.md) - 增强报告模板
+
 #### optimize-skill 参考文档
+
 - [description-optimization.md](../skills/optimize-skill/references/description-optimization.md) - 描述优化指南
 - [best-practices.md](../skills/optimize-skill/references/best-practices.md) - 最佳实践应用
 - [evaluation-testing.md](../skills/optimize-skill/references/evaluation-testing.md) - 评估测试指南
 - [eval-script-template.sh](../skills/optimize-skill/assets/eval-script-template.sh) - 评估脚本模板
 
 #### 官方规范
+
 - [Agent Skills Specification](https://agentskills.io/specification) - 官方技能规范
 - [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) - 技能验证工具
 
@@ -1376,6 +1866,7 @@ optimize-skill（测试验证）←┘
 位置：`../skills/optimize-skill/assets/eval-script-template.sh`
 
 **使用方法**：
+
 ```bash
 # 1. 复制模板
 cp ../skills/optimize-skill/assets/eval-script-template.sh eval-my-skill.sh
@@ -1386,7 +1877,7 @@ chmod +x eval-my-skill.sh
 
 # 4. 运行评估
 ./eval-my-skill.sh
-````
+```
 
 **自定义评估方法**：
 
@@ -1422,6 +1913,7 @@ chmod +x eval-my-skill.sh
 
 2. **进阶用户**：
    - 深入研究参考文档
+   - 使用 enhance-skill 从外部资料增强技能
    - 创建复杂的多模块技能
    - 建立自动化测试流程
 
