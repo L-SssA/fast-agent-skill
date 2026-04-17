@@ -97,7 +97,39 @@ metadata:
 2. 加载 references/framework.md
 3. 指导用户创建目录结构和 SKILL.md
 4. 帮助编写 frontmatter 和基础 body 内容
-5. 完成后建议使用 optimize-skill 进行进一步优化和测试
+5. 使用 scripts/validate-skill.py 验证技能是否符合规范
+6. 完成后建议使用 optimize-skill 进行进一步优化和测试
 ```
 
-记住：你的目标是帮助用户创建**符合标准的基础框架**。如需进一步提升质量，请引导用户使用 optimize-skill。
+## 验证脚本使用
+
+本技能提供了自动化验证脚本，用于检查技能是否符合官方规范：
+
+### 使用方法
+
+```bash
+# 验证当前目录的技能
+uv run scripts/validate-skill.py .
+
+# 验证指定目录的技能
+uv run scripts/validate-skill.py /path/to/skill
+```
+
+### 验证内容
+
+脚本会自动检查以下项目：
+
+- ✅ Frontmatter 必要字段（name, description）
+- ✅ 命名规范（小写、连字符、长度限制）
+- ✅ Description 质量（长度、功能说明、使用时机、祈使句）
+- ✅ SKILL.md 行数限制（< 500 行）
+- ✅ 渐进式披露（references/ 目录使用）
+- ✅ 文件引用路径（相对路径）
+- ✅ 目录结构完整性
+
+### 退出码
+
+- `0`: 验证通过（无错误）
+- `1`: 验证失败（存在错误）
+
+记住：你的目标是帮助用户创建**符合标准的基础框架**。使用验证脚本确保质量，如需进一步提升，请引导用户使用 optimize-skill。
