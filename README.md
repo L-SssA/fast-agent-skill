@@ -17,25 +17,35 @@
 
 **安装步骤**：
 
-### 方法一：使用安装脚本（推荐）
+### 使用统一的 Python 脚本（推荐）
 
-#### Windows (双击运行)
-
-直接双击 `scripts/install-skills.bat` 文件即可自动安装。
-
-#### Windows (PowerShell)
-
-```powershell
-# 在项目根目录运行
-.\scripts\install-skills.ps1
-```
-
-#### Linux/Mac (Bash)
+这是最简单且最可靠的方法，适用于所有平台（Windows、Linux、Mac）。
 
 ```bash
-# 在项目根目录运行
-chmod +x scripts/install-skills.sh
-./scripts/install-skills.sh
+# 使用 uv 运行（推荐）
+uv run scripts/manage-skills.py install
+
+# 或者直接使用 Python
+python scripts/manage-skills.py install
+```
+
+**可用命令：**
+
+- `install` - 安装所有技能
+- `uninstall` - 卸载所有技能
+- `verify` - 验证技能安装状态
+
+**示例：**
+
+```bash
+# 安装技能
+uv run scripts/manage-skills.py install
+
+# 验证安装
+uv run scripts/manage-skills.py verify
+
+# 卸载技能
+uv run scripts/manage-skills.py uninstall
 ```
 
 ### 方法二：手动创建符号链接
@@ -74,18 +84,18 @@ cp -r skills/* .agents/skills/
 
 **验证安装**：
 
-方法一：使用验证脚本
+方法一：使用统一脚本（推荐）
 
-- Windows: 双击运行 `scripts/verify-installation.bat`
-- Linux/Mac: 检查 `.agents/skills` 目录
+```bash
+uv run scripts/manage-skills.py verify
+```
 
 方法二：在代理中验证
-在代理会话中使用 `/skills` 命令，确认 `create-skill`、`enhance-skill` 和 `optimize-skill` 出现在列表中。
+在代理会话中使用 `/skills` 命令，确认 `create-skill`、`enhance-skill`、`optimize-skill` 和 `feedback-skill` 出现在列表中。
 
 **卸载技能**：
 
-- Windows: 双击运行 `scripts/uninstall-skills.bat`
-- Linux/Mac: 删除 `.agents/skills` 目录下的符号链接
+使用统一脚本：`uv run scripts/manage-skills.py uninstall`
 
 **开始使用**：
 

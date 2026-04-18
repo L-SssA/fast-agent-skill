@@ -10,23 +10,35 @@
 
 ## 安装方法
 
-### Windows 用户
+### 使用统一的 Python 脚本（跨平台）
 
-#### 方法一：双击运行（最简单）
-
-直接双击 `scripts/install-skills.bat` 文件即可。
-
-#### 方法二：PowerShell
-
-```powershell
-.\scripts\install-skills.ps1
-```
-
-### Linux/Mac 用户
+这是最简单且最可靠的方法，适用于所有平台（Windows、Linux、Mac）。
 
 ```bash
-chmod +x scripts/install-skills.sh
-./scripts/install-skills.sh
+# 使用 uv 运行（推荐）
+uv run scripts/manage-skills.py install
+
+# 或者直接使用 Python
+python scripts/manage-skills.py install
+```
+
+**可用命令：**
+
+- `install` - 安装所有技能
+- `uninstall` - 卸载所有技能
+- `verify` - 验证技能安装状态
+
+**示例：**
+
+```bash
+# 安装技能
+uv run scripts/manage-skills.py install
+
+# 验证安装
+uv run scripts/manage-skills.py verify
+
+# 卸载技能
+uv run scripts/manage-skills.py uninstall
 ```
 
 ## 注意事项
@@ -70,7 +82,7 @@ A: 不需要！因为使用了符号链接，任何修改都会自动同步。
 
 ### Q: 如何卸载技能？
 
-A: 运行 `scripts/uninstall-skills.bat`（Windows）或删除 `.agents/skills` 目录下的链接。
+A: 使用统一脚本：`uv run scripts/manage-skills.py uninstall`
 
 ### Q: 符号链接和硬链接有什么区别？
 
