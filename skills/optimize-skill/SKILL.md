@@ -1,6 +1,6 @@
 ---
 name: optimize-skill
-description: 优化和改进现有 Agent Skills 的质量、描述准确性和性能。当用户需要提升技能触发率、应用最佳实践、或进行系统化测试验证时使用此技能。支持描述优化、指令改进和评估测试。
+description: 系统化优化和处理现有 Agent Skills 的质量、描述准确性和性能。当需要提升技能触发率、应用最佳实践、进行系统化测试或优化技能指令时使用。支持描述优化、指令改进和评估测试。
 license: MIT
 metadata:
   author: fast-agent-skill
@@ -135,7 +135,7 @@ metadata:
 
 ## 工作流程示例
 
-```
+```text
 用户: "我的 CSV 分析技能触发率很低，很多相关查询都没激活"
 
 你:
