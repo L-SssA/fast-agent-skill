@@ -9,6 +9,7 @@
 1. **创建/初始化技能** (`create-skill`)：根据提供的信息，结合官方标准创建一个符合官方标准的技能。
 2. **增强技能内容** (`enhance-skill`)：从用户提供的资料中提取有用信息并智能整合到指定的技能包中。
 3. **优化技能** (`optimize-skill`)：对现有技能进行评估、测试和优化，提升技能性能和效果。
+4. **反馈提取** (`feedback-skill`)：从聊天上下文中提取用户对技能的纠正反馈，识别技能缺陷，生成规范化改进建议。
 
 ## 快速启动
 
@@ -107,6 +108,7 @@ cp -r skills/* .agents/skills/
 - [create-skill 使用指南](docs/create-skill-usage.md) - 从零创建技能
 - [enhance-skill 使用指南](docs/enhance-skill-usage.md) - 从外部资料增强技能
 - [optimize-skill 使用指南](docs/optimize-skill-usage.md) - 优化技能质量
+- [feedback-skill 使用指南](docs/feedback-skill-usage.md) - 从使用中提取反馈
 
 ## 规划中的功能
 
@@ -121,7 +123,8 @@ cp -r skills/* .agents/skills/
 ├── skills/          # 技能定义文件
 │   ├── create-skill/    # 创建新技能的技能
 │   ├── enhance-skill/   # 从外部资料增强技能内容的技能
-│   └── optimize-skill/  # 优化现有技能的技能
+│   ├── optimize-skill/  # 优化现有技能的技能
+│   └── feedback-skill/  # 从使用中提取反馈的技能
 ├── scripts/         # 安装和管理脚本
 ├── docs/            # 文档和指南
 ├── README.md        # 项目说明
