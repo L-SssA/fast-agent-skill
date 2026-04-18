@@ -28,16 +28,36 @@ python scripts/manage-skills.py install
 - `uninstall` - 卸载所有技能
 - `verify` - 验证技能安装状态
 
+**可选参数：**
+
+- `--target`, `-t` - 指定目标目录（默认：`.agents/skills`）
+- `--skills`, `-s` - 指定要操作的技能名称列表（默认：所有技能）
+
 **示例：**
 
 ```bash
-# 安装技能
+# 安装所有技能到默认目录
 uv run scripts/manage-skills.py install
+
+# 安装指定技能
+uv run scripts/manage-skills.py install --skills create-skill optimize-skill
+
+# 安装到指定目录
+uv run scripts/manage-skills.py install --target /path/to/skills
+
+# 同时指定技能和目录
+uv run scripts/manage-skills.py install --skills feedback-skill --target /custom/path
 
 # 验证安装
 uv run scripts/manage-skills.py verify
 
-# 卸载技能
+# 验证指定目录
+uv run scripts/manage-skills.py verify --target /path/to/skills
+
+# 卸载指定技能
+uv run scripts/manage-skills.py uninstall --skills feedback-skill
+
+# 卸载所有技能
 uv run scripts/manage-skills.py uninstall
 ```
 
