@@ -1,385 +1,385 @@
-# Skill Feedback Report
+# 技能反馈报告
 
-**Generated**: [Date]  
-**Skill Name**: [skill-name]  
-**Analysis Period**: [Start Date] - [End Date]
-
----
-
-## Executive Summary
-
-[Brief overview of the feedback extraction results, including:
-
-- Number of corrections identified
-- Main categories of issues found
-- Priority distribution
-- Overall skill health assessment]
+**生成时间**: [日期]  
+**技能名称**: [skill-name]  
+**分析周期**: [开始日期] - [结束日期]
 
 ---
 
-## Context Analysis Results
+## 执行摘要
 
-### Skill Usage Instances
+[反馈提取结果的简要概述，包括：
 
-| Instance | Timestamp | Task Description    | Outcome                   |
-| -------- | --------- | ------------------- | ------------------------- |
-| #1       | [time]    | [brief description] | [success/partial/failure] |
-| #2       | [time]    | [brief description] | [success/partial/failure] |
-
-### Corrections Detected
-
-**Total Corrections Found**: [N]
-
-#### Correction #1
-
-- **Timestamp**: [when it occurred]
-- **Type**: [Explicit/Implicit]
-- **Severity**: [Low/Medium/High]
-- **User Statement**: "[quote from user]"
-- **Context**: [what was happening when correction occurred]
-
-#### Correction #2
-
-[Same format as above]
+- 识别出的纠正数量
+- 发现的主要问题类别
+- 优先级分布
+- 整体技能健康度评估]
 
 ---
 
-## Root Cause Analysis
+## 上下文分析结果
 
-### Issue Categories
+### 技能使用实例
 
-| Category             | Count | Percentage | Avg Severity |
-| -------------------- | ----- | ---------- | ------------ |
-| Description Issues   | N     | X%         | [L/M/H]      |
-| Missing Instructions | N     | X%         | [L/M/H]      |
-| Edge Cases           | N     | X%         | [L/M/H]      |
-| Example Issues       | N     | X%         | [L/M/H]      |
-| Other                | N     | X%         | [L/M/H]      |
+| 实例 | 时间戳 | 任务描述   | 结果                 |
+| ---- | ------ | ---------- | -------------------- |
+| #1   | [时间] | [简要描述] | [成功/部分成功/失败] |
+| #2   | [时间] | [简要描述] | [成功/部分成功/失败] |
 
-### Detailed Analysis
+### 检测到的纠正
 
-#### Issue #1: [Brief Title]
+**发现的纠正总数**: [N]
 
-**Category**: [Description/Instruction/Edge Case/Example/Other]  
-**Priority**: [P0/P1/P2/P3]  
-**Frequency**: [Every time/Often/Sometimes/Rarely]
+#### 纠正 #1
 
-**Problem Description**:
-[Clear explanation of what went wrong]
+- **时间戳**: [发生时间]
+- **类型**: [显式/隐式]
+- **严重程度**: [低/中/高]
+- **用户陈述**: "[用户原话]"
+- **上下文**: [纠正发生时的情况]
 
-**Root Cause**:
-[Why this happened - link to specific gap in skill]
+#### 纠正 #2
 
-**Impact**:
-[How this affects users and task completion]
-
-**Evidence**:
-
-- User correction: "[quote]"
-- Agent response: "[what agent did wrong]"
-- Expected behavior: "[what should have happened]"
+[格式同上]
 
 ---
 
-## Improvement Recommendations
+## 根本原因分析
 
-### High Priority (P0-P1)
+### 问题分类
 
-#### Recommendation #1
+| 类别     | 数量 | 百分比 | 平均严重程度 |
+| -------- | ---- | ------ | ------------ |
+| 描述问题 | N    | X%     | [低/中/高]   |
+| 指令缺失 | N    | X%     | [低/中/高]   |
+| 边界情况 | N    | X%     | [低/中/高]   |
+| 示例问题 | N    | X%     | [低/中/高]   |
+| 其他     | N    | X%     | [低/中/高]   |
 
-**Type**: [Description Optimization / Instruction Addition / Edge Case Handling / Example Enhancement]
+### 详细分析
 
-**Current State**:
+#### 问题 #1: [简要标题]
+
+**类别**: [描述/指令/边界情况/示例/其他]  
+**优先级**: [P0/P1/P2/P3]  
+**频率**: [每次/经常/有时/偶尔]
+
+**问题描述**:
+[清晰说明出了什么问题]
+
+**根本原因**:
+[为什么会发生这个问题 - 链接到技能中的具体缺陷]
+
+**影响**:
+[这对用户和任务完成的影响]
+
+**证据**:
+
+- 用户纠正: "[引用]"
+- Agent 响应: "[agent 的错误行为]"
+- 期望行为: "[应该发生的情况]"
+
+---
+
+## 改进建议
+
+### 高优先级 (P0-P1)
+
+#### 建议 #1
+
+**类型**: [描述优化 / 指令补充 / 边界情况处理 / 示例增强]
+
+**当前状态**:
 
 ```
-[Current relevant content from skill, if any]
+[技能中的当前相关内容，如果有]
 ```
 
-**Proposed Change**:
+**建议修改**:
 
 ```markdown
-[Exact text to add or modify]
+[要添加或修改的确切文本]
 ```
 
-**Location**:
+**位置**:
 
-- File: `SKILL.md` or `references/[filename].md`
-- Section: [specific section name]
-- Position: [where to insert]
+- 文件: `SKILL.md` 或 `references/[filename].md`
+- 章节: [具体章节名称]
+- 位置: [插入位置]
 
-**Rationale**:
-[Why this change is needed and how it solves the problem]
+**理由**:
+[为什么需要这个更改以及它如何解决问题]
 
-**Expected Impact**:
+**预期影响**:
 
-- [Specific improvement 1]
-- [Specific improvement 2]
+- [具体改进 1]
+- [具体改进 2]
 
-**Testing Suggestion**:
-[How to verify this fix works]
-
----
-
-#### Recommendation #2
-
-[Same format as above]
-
-### Medium Priority (P2)
-
-#### Recommendation #3
-
-[Same format as high priority recommendations]
-
-### Low Priority (P3)
-
-#### Recommendation #4
-
-[Same format as high priority recommendations]
+**测试建议**:
+[如何验证此修复有效]
 
 ---
 
-## Implementation Plan
+#### 建议 #2
 
-### Phase 1: Critical Fixes (P0)
+[格式同上]
 
-**Estimated Effort**: [time estimate]
+### 中优先级 (P2)
 
-1. [ ] [Recommendation #1 title]
-   - File: [filename]
-   - Changes: [brief summary]
-2. [ ] [Recommendation #2 title]
-   - File: [filename]
-   - Changes: [brief summary]
+#### 建议 #3
 
-### Phase 2: Important Improvements (P1)
+[格式同高优先级建议]
 
-**Estimated Effort**: [time estimate]
+### 低优先级 (P3)
 
-[Similar format]
+#### 建议 #4
 
-### Phase 3: Enhancements (P2-P3)
-
-**Estimated Effort**: [time estimate]
-
-[Similar format]
+[格式同高优先级建议]
 
 ---
 
-## New Files to Create
+## 实施计划
 
-| File Path              | Purpose       | Priority | Estimated Lines |
-| ---------------------- | ------------- | -------- | --------------- |
-| `references/[name].md` | [description] | P0/P1/P2 | ~N lines        |
-| `references/[name].md` | [description] | P0/P1/P2 | ~N lines        |
+### 第一阶段: 关键修复 (P0)
 
-### File Outlines
+**预估工作量**: [时间估算]
 
-#### File: `references/[name].md`
+1. [ ] [建议 #1 标题]
+   - 文件: [文件名]
+   - 更改: [简要总结]
+2. [ ] [建议 #2 标题]
+   - 文件: [文件名]
+   - 更改: [简要总结]
+
+### 第二阶段: 重要改进 (P1)
+
+**预估工作量**: [时间估算]
+
+[类似格式]
+
+### 第三阶段: 增强功能 (P2-P3)
+
+**预估工作量**: [时间估算]
+
+[类似格式]
+
+---
+
+## 需要创建的新文件
+
+| 文件路径               | 用途   | 优先级   | 预估行数 |
+| ---------------------- | ------ | -------- | -------- |
+| `references/[name].md` | [描述] | P0/P1/P2 | ~N 行    |
+| `references/[name].md` | [描述] | P0/P1/P2 | ~N 行    |
+
+### 文件大纲
+
+#### 文件: `references/[name].md`
 
 ```markdown
-# [Title]
+# [标题]
 
-## Overview
+## 概述
 
-[Brief description]
+[简要描述]
 
-## When This Applies
+## 适用场景
 
-[Usage scenarios]
+[使用场景]
 
-## Detailed Guide
+## 详细指南
 
-[Main content structure]
+[主要内容结构]
 
-## Examples
+## 示例
 
-[Example structure]
+[示例结构]
 
-## Common Issues
+## 常见问题
 
-[Troubleshooting structure]
+[故障排除结构]
 ```
 
 ---
 
-## Files to Modify
+## 需要修改的文件
 
-| File Path              | Change Type                         | Lines Added | Lines Removed |
-| ---------------------- | ----------------------------------- | ----------- | ------------- |
-| `SKILL.md`             | [Description/Workflow/Examples/etc] | +N          | -N            |
-| `references/[name].md` | [Update/Add section]                | +N          | -N            |
+| 文件路径               | 更改类型             | 增加行数 | 删除行数 |
+| ---------------------- | -------------------- | -------- | -------- |
+| `SKILL.md`             | [描述/工作流/示例等] | +N       | -N       |
+| `references/[name].md` | [更新/添加章节]      | +N       | -N       |
 
 ---
 
-## Reference Updates Required
+## 需要更新的引用
 
-### New References to Add in SKILL.md
+### SKILL.md 中需要添加的新引用
 
 ```markdown
-## Related Resources
+## 相关资源
 
-- [New Guide Title](references/new-file.md)
-- [Another Guide](references/another-file.md)
+- [新指南标题](references/new-file.md)
+- [另一个指南](references/another-file.md)
 ```
 
-### Existing References to Update
+### 需要更新的现有引用
 
-- `[Old Link Text](references/file.md)` → `[New Link Text](references/file.md)`
-
----
-
-## Quality Checks
-
-### Pre-Implementation Checklist
-
-- [ ] All improvements reviewed and approved by user
-- [ ] No duplicate content identified
-- [ ] Progressive disclosure principle maintained
-- [ ] SKILL.md will remain under 500 lines
-- [ ] All new files have clear purpose
-- [ ] Terminology is consistent
-- [ ] Style matches existing content
-
-### Post-Implementation Checklist
-
-- [ ] SKILL.md line count: [N] (< 500)
-- [ ] All links validated
-- [ ] Markdown syntax checked
-- [ ] No broken references
-- [ ] Content reviewed for clarity
-- [ ] Examples tested (if applicable)
-- [ ] Ready for testing with optimize-skill
+- `[旧链接文本](references/file.md)` → `[新链接文本](references/file.md)`
 
 ---
 
-## Testing Recommendations
+## 质量检查
 
-### Trigger Rate Testing
+### 实施前检查清单
 
-**Suggested Test Queries (Should Trigger)**:
+- [ ] 所有改进已经用户审查并批准
+- [ ] 未发现重复内容
+- [ ] 保持了渐进式披露原则
+- [ ] SKILL.md 将保持在 500 行以下
+- [ ] 所有新文件都有明确的用途
+- [ ] 术语一致
+- [ ] 风格与现有内容匹配
 
-1. "[query that should activate skill]"
-2. "[another relevant query]"
-3. "[edge case query]"
+### 实施后检查清单
 
-**Suggested Test Queries (Should NOT Trigger)**:
-
-1. "[unrelated query]"
-2. "[query for different skill]"
-
-### Output Quality Testing
-
-**Test Cases**:
-
-1. **Scenario**: [description]
-   - **Input**: [test input]
-   - **Expected Output**: [what should happen]
-   - **Success Criteria**: [how to measure]
-
-2. **Scenario**: [description]
-   - **Input**: [test input]
-   - **Expected Output**: [what should happen]
-   - **Success Criteria**: [how to measure]
-
-### Edge Case Testing
-
-**Boundary Conditions to Test**:
-
-- [ ] Empty input
-- [ ] Maximum size input
-- [ ] Invalid format input
-- [ ] Special characters
-- [ ] [other relevant edge cases]
+- [ ] SKILL.md 行数: [N] (< 500)
+- [ ] 所有链接已验证
+- [ ] Markdown 语法已检查
+- [ ] 无损坏的引用
+- [ ] 内容清晰度已审查
+- [ ] 示例已测试（如适用）
+- [ ] 已准备好使用 optimize-skill 进行测试
 
 ---
 
-## Metrics and KPIs
+## 测试建议
 
-### Current State (Before Improvements)
+### 触发率测试
 
-- **Trigger Accuracy**: [estimated %]
-- **Correction Frequency**: [N corrections per use]
-- **User Satisfaction**: [qualitative assessment]
-- **Task Success Rate**: [estimated %]
+**建议的测试查询（应该触发）**:
 
-### Target State (After Improvements)
+1. "[应该激活技能的查询]"
+2. "[另一个相关查询]"
+3. "[边界情况查询]"
 
-- **Trigger Accuracy**: [target %]
-- **Correction Frequency**: [target: < N corrections per use]
-- **User Satisfaction**: [target level]
-- **Task Success Rate**: [target %]
+**建议的测试查询（不应触发）**:
 
-### Measurement Plan
+1. "[不相关的查询]"
+2. "[其他技能的查询]"
 
-[How to track these metrics after implementation]
+### 输出质量测试
 
----
+**测试用例**:
 
-## Risks and Mitigations
+1. **场景**: [描述]
+   - **输入**: [测试输入]
+   - **期望输出**: [应该发生的情况]
+   - **成功标准**: [如何衡量]
 
-### Risk #1: [Description]
+2. **场景**: [描述]
+   - **输入**: [测试输入]
+   - **期望输出**: [应该发生的情况]
+   - **成功标准**: [如何衡量]
 
-**Probability**: [Low/Medium/High]  
-**Impact**: [Low/Medium/High]
+### 边界情况测试
 
-**Mitigation**:
-[How to reduce or handle this risk]
+**需要测试的边界条件**:
 
-### Risk #2: [Description]
-
-[Same format]
-
----
-
-## Next Steps
-
-1. **Immediate Actions**:
-   - [ ] Review this report
-   - [ ] Approve/reject recommendations
-   - [ ] Prioritize implementation phases
-
-2. **Implementation**:
-   - [ ] Apply Phase 1 changes
-   - [ ] Validate changes
-   - [ ] Collect initial feedback
-
-3. **Testing**:
-   - [ ] Use optimize-skill for systematic testing
-   - [ ] Run trigger rate tests
-   - [ ] Test output quality
-   - [ ] Verify edge cases
-
-4. **Iteration**:
-   - [ ] Monitor usage patterns
-   - [ ] Collect new feedback
-   - [ ] Schedule next review
+- [ ] 空输入
+- [ ] 最大尺寸输入
+- [ ] 无效格式输入
+- [ ] 特殊字符
+- [ ] [其他相关边界情况]
 
 ---
 
-## Appendix
+## 指标和 KPI
 
-### A. Full Conversation Excerpts
+### 当前状态（改进前）
 
-**Excerpt #1**: [Relevant dialogue showing correction]
+- **触发准确率**: [估算 %]
+- **纠正频率**: [每次使用 N 次纠正]
+- **用户满意度**: [定性评估]
+- **任务成功率**: [估算 %]
 
-**Excerpt #2**: [Another relevant dialogue]
+### 目标状态（改进后）
 
-### B. Technical Details
+- **触发准确率**: [目标 %]
+- **纠正频率**: [目标: < 每次使用 N 次纠正]
+- **用户满意度**: [目标水平]
+- **任务成功率**: [目标 %]
 
-[Any technical analysis, code snippets, or detailed explanations]
+### 测量计划
 
-### C. Related Skills
-
-[List of skills that might be affected or related]
-
-### D. Change History
-
-| Date   | Version | Changes        | Author |
-| ------ | ------- | -------------- | ------ |
-| [date] | 1.0     | Initial report | [name] |
+[实施后如何跟踪这些指标]
 
 ---
 
-**Report Generated By**: skill-extract-feedback  
-**Version**: 1.0  
-**For Questions or Clarifications**: [contact info or process]
+## 风险和缓解措施
+
+### 风险 #1: [描述]
+
+**概率**: [低/中/高]  
+**影响**: [低/中/高]
+
+**缓解措施**:
+[如何减少或处理此风险]
+
+### 风险 #2: [描述]
+
+[格式同上]
+
+---
+
+## 下一步
+
+1. **立即行动**:
+   - [ ] 审查本报告
+   - [ ] 批准/拒绝建议
+   - [ ] 确定实施阶段的优先级
+
+2. **实施**:
+   - [ ] 应用第一阶段更改
+   - [ ] 验证更改
+   - [ ] 收集初步反馈
+
+3. **测试**:
+   - [ ] 使用 optimize-skill 进行系统化测试
+   - [ ] 运行触发率测试
+   - [ ] 测试输出质量
+   - [ ] 验证边界情况
+
+4. **迭代**:
+   - [ ] 监控使用模式
+   - [ ] 收集新反馈
+   - [ ] 安排下次审查
+
+---
+
+## 附录
+
+### A. 完整对话摘录
+
+**摘录 #1**: [显示纠正的相关对话]
+
+**摘录 #2**: [另一个相关对话]
+
+### B. 技术细节
+
+[任何技术分析、代码片段或详细解释]
+
+### C. 相关技能
+
+[可能受影响或相关的技能列表]
+
+### D. 变更历史
+
+| 日期   | 版本 | 更改     | 作者   |
+| ------ | ---- | -------- | ------ |
+| [日期] | 1.0  | 初始报告 | [姓名] |
+
+---
+
+**报告生成者**: feedback-skill  
+**版本**: 1.0  
+**问题或澄清请联系**: [联系方式或流程]

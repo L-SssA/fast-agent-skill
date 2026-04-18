@@ -223,13 +223,13 @@ files to avoid character corruption."
 改进建议:
 添加新示例:
 
-"### Complex Aggregation Example
+"### 复杂聚合示例
 
-Input: Sales data with columns [date, product, amount, region]
+输入: 销售数据，包含列 [date, product, amount, region]
 
-Task: Monthly sales by region
+任务: 按地区统计月度销售额
 
-Expected Output:
+期望输出:
 ```json
 {
   "2024-01": {

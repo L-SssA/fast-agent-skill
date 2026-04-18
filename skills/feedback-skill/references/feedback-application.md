@@ -407,13 +407,13 @@ See the [Common Pitfalls section](#common-pitfalls) below.
 
 ```markdown
 // 同级文件引用
-See also [Related Topic](related-topic.md).
+参见 [相关主题](related-topic.md)。
 
 // 上级目录引用
-Return to [Main Skill](../SKILL.md).
+返回 [主技能](../SKILL.md)。
 
 // 下级目录引用
-For details, see [Subtopic](subdir/subtopic.md).
+详情请见 [子主题](subdir/subtopic.md)。
 ```
 
 **避免的问题**：
