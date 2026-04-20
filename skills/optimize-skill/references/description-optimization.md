@@ -11,13 +11,21 @@
 **差的示例**：
 
 ```yaml
+# 英文
 description: This skill processes CSV files and generates charts.
+
+# 中文
+description: 这个技能处理CSV文件并生成图表。
 ```
 
 **好的示例**：
 
 ```yaml
+# 英文
 description: Analyze CSV and tabular data files, compute summary statistics, add derived columns, and generate charts. Use when the user has a CSV, TSV, or Excel file and wants to explore, transform, or visualize the data.
+
+# 中文
+description: 分析CSV和表格数据文件，计算统计摘要，添加派生列，并生成图表。当用户有CSV、TSV或Excel文件并想要探索、转换或可视化数据时使用。
 ```
 
 **原因**：代理在决定是否行动，告诉它"何时行动"比"这个技能做什么"更有效。
@@ -27,13 +35,21 @@ description: Analyze CSV and tabular data files, compute summary statistics, add
 **差的示例**：
 
 ```yaml
+# 英文
 description: Uses pandas library to read CSV files and matplotlib to create visualizations.
+
+# 中文
+description: 使用pandas库读取CSV文件并用matplotlib创建可视化。
 ```
 
 **好的示例**：
 
 ```yaml
+# 英文
 description: Analyze CSV data, compute statistics, and create visualizations. Use when working with tabular data files or when the user mentions spreadsheets, data analysis, or charts.
+
+# 中文
+description: 分析CSV数据，计算统计数据，并创建可视化。当处理表格数据文件或用户提到电子表格、数据分析或图表时使用。
 ```
 
 **原因**：用户描述的是他们想实现的目标，不是技术实现方式。
@@ -43,18 +59,29 @@ description: Analyze CSV data, compute statistics, and create visualizations. Us
 **差的示例**：
 
 ```yaml
+# 英文
 description: Process CSV files.
+
+# 中文
+description: 处理CSV文件。
 ```
 
 **好的示例**：
 
 ```yaml
+# 英文
 description: >
   Analyze CSV and tabular data files — compute summary statistics,
   add derived columns, generate charts, and clean messy data. Use this
   skill when the user has a CSV, TSV, or Excel file and wants to
   explore, transform, or visualize the data, even if they don't
   explicitly mention "CSV" or "analysis."
+
+# 中文
+description: >
+  分析CSV和表格数据文件——计算统计摘要、添加派生列、生成图表并清理杂乱数据。
+  当用户有CSV、TSV或Excel文件并想要探索、转换或可视化数据时使用此技能，
+  即使用户没有明确提及"CSV"或"分析"。
 ```
 
 **原因**：即使用户没有明确提及关键词，只要场景相关就应该触发。
@@ -64,6 +91,29 @@ description: >
 - 几句话到短段落通常足够
 - 不超过 1024 字符硬限制
 - 避免冗余和重复信息
+
+#### 保持语言一致性
+
+**重要原则**：优化 description 时必须保持目标技能的原始语言。
+
+- 如果原技能使用中文 description → 优化后仍使用中文
+- 如果原技能使用英文 description → 优化后仍使用英文
+- 不要翻译或转换语言，只优化表达方式和内容质量
+
+**原因**：技能的语言应与目标用户群体和使用场景匹配。强制转换语言会降低技能的可用性和触发准确性。
+
+**示例对比**：
+
+```yaml
+# 原技能（中文）
+description: 处理CSV文件并生成图表。
+
+# ❌ 错误的优化（转换为英文）
+description: Process CSV files and generate charts.
+
+# ✅ 正确的优化（保持中文，改进表达）
+description: 分析CSV和表格数据文件，计算统计摘要，添加派生列，并生成图表。当用户有CSV、TSV或Excel文件并想要探索、转换或可视化数据时使用。
+```
 
 ## 2. 描述测试与迭代流程
 
@@ -148,6 +198,11 @@ description: >
    - **误报过多** → 描述可能太宽，增加特异性或澄清边界
    - **避免过拟合**：不要添加失败查询中的具体关键词，而是找到它们代表的通用类别
    - **结构性改变**：如果多次迭代无改进，尝试完全不同的描述框架
+
+   **修订时的注意事项**：
+   - **保持语言一致**：不要改变原技能的描述语言（中文/英文等）
+   - 仅优化表达方式、增加关键词、改进结构
+   - 如需参考其他语言的优秀示例，应翻译后再应用，而非直接复制
 
 4. **重复步骤 1-3**
    - 直到训练集全部通过或无明显改进
@@ -256,6 +311,8 @@ chmod +x evaluate_triggers.sh
 - [ ] 使用了训练/验证集划分
 - [ ] 验证集通过率满意
 - [ ] 避免了过拟合（用新查询测试）
+- [ ] 保持了原技能的描述语言（未进行中译英或英译中）
+- [ ] 如参考了其他语言示例，已正确翻译为目标语言
 
 ## 7. 下一步
 
